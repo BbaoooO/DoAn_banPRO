@@ -1,0 +1,47 @@
+<UserControl x:Class="DoAn_banPRO.Views.LoaiHangView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DoAn_banPRO.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="QUẢN LÝ LOẠI HÀNG" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+        
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Mã Loại:" Grid.Column="0" Margin="5"/>
+            <TextBox Text="{Binding SelectedLoaiHang.MaLoai, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Tên Loại:" Grid.Column="2" Margin="5"/>
+            <TextBox Text="{Binding SelectedLoaiHang.TenLoai, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Margin="5"/>
+        </Grid>
+        
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Tạo mới" Command="{Binding AddCommand}" Width="70" Margin="0,0,5,0"/>
+            <Button Content="Cập nhật" Command="{Binding UpdateCommand}" Width="70" Margin="0,0,5,0"/>
+            <Button Content="Xóa" Command="{Binding DeleteCommand}" Width="70"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding LoaiHangList}" SelectedItem="{Binding SelectedLoaiHang}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã loại hàng" Binding="{Binding MaLoai}"/>
+                <DataGridTextColumn Header="Tên loại hàng" Binding="{Binding TenLoai}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
