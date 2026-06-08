@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using DoAn_banPRO.Models;
@@ -45,11 +45,11 @@ namespace DoAn_banPRO.Repositories
         {
             using (var context = new KhodientuContext())
             {
-                // Ki?m tra xem Nh� CC c� ?ang cung c?p linh ki?n n�o kh�ng
+                // Ki?m tra xem Nhà CC có ?ang cung c?p linh ki?n nào không
                 var isUsed = context.LinhKiens.Any(lk => lk.MaNCC == maNCC);
                 if (isUsed)
                 {
-                    throw new Exception("Nh� cung c?p n�y ?ang ???c s? d?ng cho linh ki?n n�n kh�ng th? xo�!");
+                    throw new Exception("Nhà cung cấp này đang được sử dụng cho linh kiệnn nên không thể xoá!");
                 }
 
                 var ncc = context.NhaCungCaps.Find(maNCC);

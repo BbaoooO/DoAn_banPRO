@@ -32,24 +32,103 @@ namespace DoAn_banPRO.ViewModels
 
         public MainViewModel()
         {
-            ShowLinhKienCommand = new RelayCommand<object>(p => CurrentViewModel = new LinhKienViewModel(), p => true);
-            ShowLoaiHangCommand = new RelayCommand<object>(p => CurrentViewModel = new LoaiHangViewModel(), p => true);
-            ShowPhieuNhapCommand = new RelayCommand<object>(p => CurrentViewModel = new PhieuNhapViewModel(), p => true);
-            ShowPhieuXuatCommand = new RelayCommand<object>(p => CurrentViewModel = new PhieuXuatViewModel(), p => true);
-            ShowNhaCungCapCommand = new RelayCommand<object>(p => CurrentViewModel = new NhaCungCapViewModel(), p => true);
-            ShowThongKeCommand = new RelayCommand<object>(p => CurrentViewModel = new ThongKeViewModel(), p => true);
-            LogoutCommand = new RelayCommand<Window>(p => Logout(p), p => true);
-            
-            // Trang m?c ??nh
-            CurrentViewModel = new LinhKienViewModel();
+            ShowLinhKienCommand = new RelayCommand<object>(
+                p => CurrentViewModel = new LinhKienViewModel(),
+                p => CanOpenLinhKien()
+            );
+
+            ShowLoaiHangCommand = new RelayCommand<object>(
+                p => CurrentViewModel = new LoaiHangViewModel(),
+                p => CanOpenLoaiHang()
+            );
+
+            ShowNhaCungCapCommand = new RelayCommand<object>(
+                p => CurrentViewModel = new NhaCungCapViewModel(),
+                p => CanOpenNhaCungCap()
+            );
+
+            ShowPhieuNhapCommand = new RelayCommand<object>(
+                p => CurrentViewModel = new PhieuNhapViewModel(),
+                p => CanOpenPhieuNhap()
+            );
+
+            ShowPhieuXuatCommand = new RelayCommand<object>(
+                p => CurrentViewModel = new PhieuXuatViewModel(),
+                p => CanOpenPhieuXuat()
+            );
+
+            ShowThongKeCommand = new RelayCommand<object>(
+                p => CurrentViewModel = new ThongKeViewModel(),
+                p => CanOpenThongKe()
+            );
+
+            LogoutCommand = new RelayCommand<Window>(
+                p => Logout(p),
+                p => true
+            );
+
+            SetDefaultViewByRole();
+        }
+
+        private bool CanOpenLinhKien()
+        {
+            return AuthService.IsAdmin()
+                || AuthService.IsThuKho()
+                || AuthService.IsNhanVien();
+        }
+
+        private bool CanOpenLoaiHang()
+        {
+            return AuthService.IsAdmin()
+                || AuthService.IsThuKho();
+        }
+
+        private bool CanOpenNhaCungCap()
+        {
+            return AuthService.IsAdmin()
+                || AuthService.IsThuKho();
+        }
+
+        private bool CanOpenPhieuNhap()
+        {
+            return AuthService.IsThuKho();
+        }
+
+        private bool CanOpenPhieuXuat()
+        {
+            return AuthService.IsThuKho()
+                || AuthService.IsNhanVien();
+        }
+
+        private bool CanOpenThongKe()
+        {
+            return AuthService.IsAdmin();
+        }
+
+        private void SetDefaultViewByRole()
+        {
+            if (CanOpenLinhKien())
+            {
+                CurrentViewModel = new LinhKienViewModel();
+            }
+            else if (CanOpenPhieuXuat())
+            {
+                CurrentViewModel = new PhieuXuatViewModel();
+            }
+            else
+            {
+                CurrentViewModel = null;
+            }
         }
 
         private void Logout(Window window)
         {
             var auth = new AuthService();
             auth.Logout();
+
             var loginWindow = new LoginWindow();
             loginWindow.Show();
+
             window?.Close();
         }
     }

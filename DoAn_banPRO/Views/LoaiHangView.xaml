@@ -38,10 +38,17 @@
 
         <DataGrid Grid.Row="2" ItemsSource="{Binding LoaiHangList}" SelectedItem="{Binding SelectedLoaiHang}" 
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã loại hàng" Binding="{Binding MaLoai}"/>
-                <DataGridTextColumn Header="Tên loại hàng" Binding="{Binding TenLoai}" Width="*"/>
-            </DataGrid.Columns>
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Mã loại hàng"
+									Binding="{Binding MaLoai}"
+									Width="160"
+									MinWidth="140"/>
+
+				<DataGridTextColumn Header="Tên loại hàng"
+									Binding="{Binding TenLoai}"
+									Width="*"
+									MinWidth="260"/>
+			</DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

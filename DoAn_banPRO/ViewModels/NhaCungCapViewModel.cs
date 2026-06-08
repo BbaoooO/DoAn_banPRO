@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+Ôªøusing System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using DoAn_banPRO.Helpers;
@@ -69,12 +69,12 @@ namespace DoAn_banPRO.ViewModels
             {
                 _repository.Add(SelectedNCC);
                 LoadData();
-                MessageBox.Show("ThÍm th‡nh cÙng!", "ThÙng b·o");
+                MessageBox.Show("Th√™m th√†nh c√¥ng!", "Th√¥ng b√°o");
                 SelectedNCC = new NhaCungCap(); // Reset Form
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show($"L?i: {ex.Message}", "L?i");
+                MessageBox.Show($"L·ªói: {ex.Message}", "L·ªói");
             }
         }
 
@@ -84,11 +84,11 @@ namespace DoAn_banPRO.ViewModels
             {
                 _repository.Update(SelectedNCC);
                 LoadData();
-                MessageBox.Show("C?p nh?t th‡nh cÙng!", "ThÙng b·o");
+                MessageBox.Show("C·∫≠p nh·∫≠t th√†nh c√¥ng!", "Th√¥ng b√°o");
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show($"L?i: {ex.Message}", "L?i");
+                MessageBox.Show($"L·ªói: {ex.Message}", "L·ªói");
             }
         }
 
@@ -96,17 +96,17 @@ namespace DoAn_banPRO.ViewModels
         {
             try
             {
-                var result = MessageBox.Show("B?n cÛ ch?c mu?n xÛa nh‡ cung c?p n‡y?", "X·c nh?n", MessageBoxButton.YesNo);
+                var result = MessageBox.Show("B·∫°n c√≥ ch·∫Øc mu·ªën x√≥a nh√† cung c·∫•p n√†y?", "X√°c nh·∫≠n", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     _repository.Delete(SelectedNCC.MaNCC);
                     LoadData();
-                    MessageBox.Show("XÛa th‡nh cÙng!", "ThÙng b·o");
+                    MessageBox.Show("X√≥a th√†nh c√¥ng!", "Th√¥ng b√°o");
                 }
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show($"L?i: {ex.Message}", "L?i");
+                MessageBox.Show($"L·ªói: {ex.Message}", "L·ªói");
             }
         }
     }

@@ -55,25 +55,52 @@
         
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,10">
             <TextBox Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="0,0,5,0"/>
-            <Button Content="Tim" Command="{Binding SearchCommand}" Width="60" Margin="0,0,15,0"/>
+            <Button Content="Tìm" Command="{Binding SearchCommand}" Width="70" Margin="0,0,15,0"/>
             
-            <Button Content="Tạo mới" Command="{Binding AddCommand}" Width="70" Margin="0,0,5,0"/>
-            <Button Content="Cập nhật" Command="{Binding UpdateCommand}" Width="70" Margin="0,0,5,0"/>
-            <Button Content="Xóa" Command="{Binding DeleteCommand}" Width="70"/>
+            <Button Content="Tạo mới" Command="{Binding AddCommand}" Width="90" Margin="0,0,5,0"/>
+            <Button Content="Cập nhật" Command="{Binding UpdateCommand}" Width="90" Margin="0,0,5,0"/>
+            <Button Content="Xóa" Command="{Binding DeleteCommand}" Width="90"/>
         </StackPanel>
 
         <!-- Data Grid -->
         <DataGrid Grid.Row="2" ItemsSource="{Binding LinhKienList}" SelectedItem="{Binding SelectedLinhKien}" 
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã linh kiện" Binding="{Binding MaLK}"/>
-                <DataGridTextColumn Header="Tên linh kiện" Binding="{Binding TenLK}" Width="*"/>
-                <DataGridTextColumn Header="Tồn kho" Binding="{Binding TonKho}"/>
-                <DataGridTextColumn Header="Đơn vị" Binding="{Binding DonViTinh}"/>
-                <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGia, StringFormat={}{0:N0}}"/>
-                <DataGridTextColumn Header="Loại hàng" Binding="{Binding TenLoai}"/>
-                <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding TenNCC}"/>
-            </DataGrid.Columns>
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Mã linh kiện"
+									Binding="{Binding MaLK}"
+									Width="130"
+									MinWidth="120"/>
+
+				<DataGridTextColumn Header="Tên linh kiện"
+									Binding="{Binding TenLK}"
+									Width="2*"
+									MinWidth="220"/>
+
+				<DataGridTextColumn Header="Tồn kho"
+									Binding="{Binding TonKho}"
+									Width="110"
+									MinWidth="100"/>
+
+				<DataGridTextColumn Header="Đơn vị"
+									Binding="{Binding DonViTinh}"
+									Width="110"
+									MinWidth="100"/>
+
+				<DataGridTextColumn Header="Đơn giá"
+									Binding="{Binding DonGia, StringFormat=N0}"
+									Width="150"
+									MinWidth="130"/>
+
+				<DataGridTextColumn Header="Loại hàng"
+									Binding="{Binding TenLoai}"
+									Width="180"
+									MinWidth="150"/>
+
+				<DataGridTextColumn Header="Nhà cung cấp"
+									Binding="{Binding TenNCC}"
+									Width="2*"
+									MinWidth="220"/>
+			</DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

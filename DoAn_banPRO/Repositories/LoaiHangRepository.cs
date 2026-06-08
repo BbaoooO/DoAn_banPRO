@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using DoAn_banPRO.Models;
@@ -41,7 +41,7 @@ namespace DoAn_banPRO.Repositories
                 var isUsed = context.LinhKiens.Any(lk => lk.MaLoai == maLoai);
                 if (isUsed)
                 {
-                    throw new Exception("Lo?i h�ng n�y ?ang ???c s? d?ng cho linh ki?n! Kh�ng th? x�a.");
+                    throw new Exception("Loại hàng này đang được sử dụng cho linh kiện! Không thể xóa.");
                 }
 
                 var lh = context.LoaiHangs.Find(maLoai);

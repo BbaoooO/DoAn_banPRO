@@ -1,3 +1,4 @@
+﻿using System;
 using DoAn_banPRO.Models;
 using DoAn_banPRO.Repositories;
 
@@ -6,6 +7,7 @@ namespace DoAn_banPRO.Services
     public class AuthService
     {
         private readonly INguoiDungRepository _repository;
+
         public static NguoiDung CurrentUser { get; private set; }
 
         public AuthService()
@@ -16,11 +18,13 @@ namespace DoAn_banPRO.Services
         public bool Login(string taiKhoan, string matKhau)
         {
             var user = _repository.GetByTaiKhoanMatKhau(taiKhoan, matKhau);
+
             if (user != null)
             {
                 CurrentUser = user;
                 return true;
             }
+
             return false;
         }
 
@@ -29,8 +33,37 @@ namespace DoAn_banPRO.Services
             CurrentUser = null;
         }
 
-        public static bool IsAdmin() => CurrentUser?.Quyen == "Qu?n tr? vi�n";
-        public static bool IsThuKho() => CurrentUser?.Quyen == "Th? kho" || IsAdmin();
-        public static bool IsNhanVien() => CurrentUser?.Quyen == "Nh�n vi�n b�n h�ng" || IsAdmin();
+        private static string GetRole()
+        {
+            return CurrentUser?.Quyen?.Trim() ?? "";
+        }
+
+        public static bool IsAdmin()
+        {
+            string role = GetRole();
+
+            return role.Equals("ADMIN", StringComparison.OrdinalIgnoreCase)
+                || role == "Quản trị viên"
+                || role == "Qu?n tr? viên";
+        }
+
+        public static bool IsThuKho()
+        {
+            string role = GetRole();
+
+            return role.Equals("THU_KHO", StringComparison.OrdinalIgnoreCase)
+                || role == "Thủ kho"
+                || role == "Th? kho"
+                || IsAdmin();
+        }
+
+        public static bool IsNhanVien()
+        {
+            string role = GetRole();
+
+            return role.Equals("NHAN_VIEN", StringComparison.OrdinalIgnoreCase)
+                || role == "Nhân viên bán hàng"
+                || IsAdmin();
+        }
     }
 }

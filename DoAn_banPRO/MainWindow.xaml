@@ -3,68 +3,270 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DoAn_banPRO"
         xmlns:ViewModels="clr-namespace:DoAn_banPRO.ViewModels"
         xmlns:Views="clr-namespace:DoAn_banPRO.Views"
         mc:Ignorable="d"
-        Title="Quản Lý Kho Điện Tử" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="Quản Lý Kho Điện Tử"
+        Height="760"
+        Width="1280"
+        MinHeight="700"
+        MinWidth="1150"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource AppBackgroundBrush}"
+        FontFamily="Segoe UI">
+
     <Window.DataContext>
         <ViewModels:MainViewModel/>
     </Window.DataContext>
+
     <Window.Resources>
         <DataTemplate DataType="{x:Type ViewModels:LinhKienViewModel}">
             <Views:LinhKienView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type ViewModels:LoaiHangViewModel}">
             <Views:LoaiHangView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type ViewModels:PhieuNhapViewModel}">
             <Views:PhieuNhapView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type ViewModels:PhieuXuatViewModel}">
             <Views:PhieuXuatView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type ViewModels:NhaCungCapViewModel}">
             <Views:NhaCungCapView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type ViewModels:ThongKeViewModel}">
             <Views:ThongKeView/>
         </DataTemplate>
     </Window.Resources>
-    
-    <Grid Background="#f5f7fa">
+
+    <Grid Background="{StaticResource AppBackgroundBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="280"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <!-- Menu Left -->
-        <Border Grid.Column="0" Background="#2c3e50" CornerRadius="0,15,15,0" Margin="0,0,10,0" Padding="10">
-            <StackPanel Margin="10">
-                <TextBlock Text="MENU CHÍNH" FontWeight="Bold" Foreground="White" FontSize="20" Margin="0,10,0,20" HorizontalAlignment="Center"/>
-                <Border Background="#34495e" CornerRadius="10" Padding="10" Margin="0,0,0,30">
-                    <TextBlock Text="{Binding UserInfo}" FontSize="14" Foreground="#ecf0f1" FontStyle="Italic" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+
+        <!-- SIDEBAR -->
+        <Border Grid.Column="0"
+                Background="{StaticResource SidebarBrush}"
+                Padding="22"
+                CornerRadius="0,24,24,0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Grid.Row="0" Margin="0,4,0,24">
+                    <Border Width="58"
+                            Height="58"
+                            CornerRadius="18"
+                            Background="#2563EB"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,12">
+                        <TextBlock Text="⚡"
+                                   FontSize="28"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"/>
+                    </Border>
+
+                    <TextBlock Text="KHO ĐIỆN TỬ"
+                               Foreground="White"
+                               FontWeight="Bold"
+                               FontSize="22"/>
+
+                    <TextBlock Text="Quản lý linh kiện chuyên nghiệp"
+                               Foreground="#94A3B8"
+                               FontSize="13"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <!-- User Card -->
+                <Border Grid.Row="1"
+                        Background="#1E293B"
+                        CornerRadius="16"
+                        Padding="14"
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Tài khoản đang đăng nhập"
+                                   Foreground="#94A3B8"
+                                   FontSize="12"/>
+
+                        <TextBlock Text="{Binding UserInfo}"
+                                   Foreground="#F8FAFC"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
                 </Border>
-                
-                <Button Content="Linh Kiện" Height="40" Margin="0,8" Command="{Binding ShowLinhKienCommand}" Background="#3498db" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
-                <Button Content="Loại Hàng" Height="40" Margin="0,8" Command="{Binding ShowLoaiHangCommand}" Background="#3498db" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
-                
-                <Button Content="Nhà Cung Cấp" Height="40" Margin="0,8" Command="{Binding ShowNhaCungCapCommand}" Background="#3498db" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
-                <Button Content="Nhập Kho" Height="40" Margin="0,8" Command="{Binding ShowPhieuNhapCommand}" Background="#27ae60" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
-                <Button Content="Xuất Kho" Height="40" Margin="0,8" Command="{Binding ShowPhieuXuatCommand}" Background="#e74c3c" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
-                <Button Content="Thống Kê" Height="40" Margin="0,8" Command="{Binding ShowThongKeCommand}" Background="#f39c12" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
-                
-                <Button Content="Đăng Xuất" Height="40" Margin="0,50,0,0" Command="{Binding LogoutCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Background="#7f8c8d" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-            </StackPanel>
+
+                <!-- Menu -->
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="DANH MỤC"
+                               Foreground="#64748B"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               Margin="4,0,0,10"/>
+
+                    <Button Command="{Binding ShowLinhKienCommand}"
+                            Style="{StaticResource NavButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="🧩" FontSize="17" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Text="Linh kiện" Foreground="#E5E7EB"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding ShowLoaiHangCommand}"
+                            Style="{StaticResource NavButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="🏷" FontSize="17" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Text="Loại hàng" Foreground="#E5E7EB"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding ShowNhaCungCapCommand}"
+                            Style="{StaticResource NavButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="🏢" FontSize="17" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Text="Nhà cung cấp" Foreground="#E5E7EB"/>
+                        </Grid>
+                    </Button>
+
+                    <TextBlock Text="NGHIỆP VỤ KHO"
+                               Foreground="#64748B"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               Margin="4,22,0,10"/>
+
+                    <Button Command="{Binding ShowPhieuNhapCommand}"
+                            Style="{StaticResource NavButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="📥" FontSize="17" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Text="Nhập kho" Foreground="#E5E7EB"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding ShowPhieuXuatCommand}"
+                            Style="{StaticResource NavButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="📤" FontSize="17" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Text="Xuất kho" Foreground="#E5E7EB"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding ShowThongKeCommand}"
+                            Style="{StaticResource NavButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="📊" FontSize="17" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Text="Thống kê - báo cáo" Foreground="#E5E7EB"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+
+                <!-- Logout -->
+                <Button Grid.Row="3"
+                        Command="{Binding LogoutCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        Background="#334155"
+                        Style="{StaticResource NavButtonStyle}"
+                        Margin="0,18,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="🚪" FontSize="17" Foreground="White"/>
+                        <TextBlock Grid.Column="1" Text="Đăng xuất" Foreground="#F8FAFC"/>
+                    </Grid>
+                </Button>
+            </Grid>
         </Border>
 
-        <!-- Main Content -->
-        <Border Grid.Column="1" Background="White" CornerRadius="10" Margin="10" Padding="20">
-            <Border.Effect>
-                <DropShadowEffect Color="Gray" BlurRadius="10" Opacity="0.2"/>
-            </Border.Effect>
-            <ContentControl Content="{Binding CurrentViewModel}"/>
-        </Border>
+        <!-- MAIN CONTENT -->
+        <Grid Grid.Column="1" Margin="26">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
+            <!-- Header -->
+            <Border Grid.Row="0"
+                    Style="{StaticResource CardStyle}"
+                    Padding="22"
+                    Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Bảng điều khiển hệ thống"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextMainBrush}"/>
+
+                        <TextBlock Text="Quản lý linh kiện, nhập kho, xuất kho và báo cáo tồn kho"
+                                   Style="{StaticResource MutedTextStyle}"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Background="#EFF6FF"
+                            CornerRadius="12"
+                            Padding="14,8"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="WPF • MVVM • SQL Server"
+                                   Foreground="#1D4ED8"
+                                   FontWeight="SemiBold"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Page container -->
+            <Border Grid.Row="1"
+                    Style="{StaticResource CardStyle}"
+                    Padding="20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <ContentControl Content="{Binding CurrentViewModel}"/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

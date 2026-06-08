@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -30,13 +30,13 @@
             <TextBox Text="{Binding SelectedNCC.MaNCC, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="5"/>
 
             <TextBlock Text="Tên NCC:" Grid.Row="0" Grid.Column="2" Margin="5"/>
-            <TextBox Text="{Binding SelectedNCC.TenNCC, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="3" Margin="5"/>
+            <TextBox Text="{Binding SelectedNCC.TenNCC, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="3" Margin="10,5,-200,5"/>
 
             <TextBlock Text="Số điện thoại:" Grid.Row="1" Grid.Column="0" Margin="5"/>
             <TextBox Text="{Binding SelectedNCC.SoDienThoai, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
             <TextBlock Text="Địa chỉ:" Grid.Row="1" Grid.Column="2" Margin="5"/>
-            <TextBox Text="{Binding SelectedNCC.DiaChi, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" Margin="5"/>
+            <TextBox Text="{Binding SelectedNCC.DiaChi, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" Margin="5,5,-200,5"/>
         </Grid>
         
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,10">
@@ -46,7 +46,7 @@
         </StackPanel>
 
         <DataGrid Grid.Row="2" ItemsSource="{Binding NhaCungCapList}" SelectedItem="{Binding SelectedNCC}" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã Nhà Cung Cấp" Binding="{Binding MaNCC}"/>
                 <DataGridTextColumn Header="Tên Nhà Cung Cấp" Binding="{Binding TenNCC}" Width="200"/>

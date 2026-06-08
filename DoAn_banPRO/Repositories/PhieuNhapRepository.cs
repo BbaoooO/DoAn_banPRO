@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +16,11 @@ namespace DoAn_banPRO.Repositories
                 {
                     try
                     {
-                        // 1. Thêm Phi?u Nh?p
+                        // 1. ThÃªm Phi?u Nh?p
                         context.PhieuNhaps.Add(phieuNhap);
-                        context.SaveChanges(); // L?y MaPhieu (n?u là t? sinh, ? ?ây MaPhieu là char nên ?ã gán tr??c)
+                        context.SaveChanges(); // L?y MaPhieu (n?u lÃ  t? sinh, ? ?Ã¢y MaPhieu lÃ  char nÃªn ?Ã£ gÃ¡n tr??c)
 
-                        // 2. Thêm Chi ti?t phi?u nh?p
+                        // 2. ThÃªm Chi ti?t phi?u nh?p
                         foreach (var chitiet in chiTietList)
                         {
                             chitiet.MaPN = phieuNhap.MaPhieu;
@@ -35,7 +35,7 @@ namespace DoAn_banPRO.Repositories
                             }
                             else
                             {
-                                throw new Exception($"Linh ki?n v?i mã {chitiet.MaLK} không t?n t?i!");
+                                throw new Exception($"Linh kiá»‡n vá»›i mÃ£ {chitiet.MaLK} khÃ´ng tá»“n táº¡i!");
                             }
                         }
 

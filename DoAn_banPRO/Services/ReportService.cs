@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,11 +35,11 @@ namespace DoAn_banPRO.Services
                 }
 
                 File.WriteAllText(filePath, strBuilder.ToString(), Encoding.UTF8);
-                MessageBox.Show($"Xu?t b·o c·o th‡nh cÙng t?i: {filePath}", "ThÙng b·o", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Xu·∫•t b√°o c√°o th√†nh c√¥ng t·∫°i: {filePath}", "Th√¥ng b√°o", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"L?i xu?t b·o c·o: {ex.Message}", "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"L·ªói xu·∫•t b√°o c√°o: {ex.Message}", "L·ªói", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
